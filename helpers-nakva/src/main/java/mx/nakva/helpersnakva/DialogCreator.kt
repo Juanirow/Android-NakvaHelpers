@@ -51,15 +51,18 @@ object DialogCreator {
      *
      * Create an alert dialog with an input to ask information to the user
      *
-     * @param context           Current context of the app
-     * @param titleId           Id of the title resource to put in the alert dialog
-     * @param descId            Id of the resource to show as message in the dialog
-     * @param editText          Input to enter information to the user
-     * @param inputType         Type of input for the dialog
-     * @param inputText         Text to put in the edit text selected
-     * @param hintInput         Hint of the edit text
-
-     * @param negativeBtnTextId Hint of the edit text
+     * @param context                   Current context of the app
+     * @param titleId                   Id of the title resource to put in the alert dialog
+     * @param descId                    Id of the resource to show as message in the dialog
+     * @param editText                  Input to enter information to the user
+     * @param inputType                 Type of input for the dialog
+     * @param inputText                 Text to put in the edit text selected
+     * @param hintInput                 Hint of the edit text
+     * @param positiveBtnTextId         Hint of the edit text
+     * @param negativeBtnTextId         Hint of the edit text
+     * @param onClickPositiveListener   Listener for the onClick Positive Listener
+     * @param onClickNegativeListener   Listener for the onClick Negative Listener
+     * @param onDismissListener         Listener for the on dismiss action of the dialog
      * @return alert dialog
      */
     fun createInputDialog(context: Context,
@@ -70,7 +73,10 @@ object DialogCreator {
                           inputText: String?,
                           hintInput: Int,
                           positiveBtnTextId: Int,
-                          negativeBtnTextId: Int): AlertDialog {
+                          negativeBtnTextId: Int,
+                          onClickPositiveListener: DialogInterface.OnClickListener? = null,
+                          onClickNegativeListener: DialogInterface.OnClickListener? = null,
+                          onDismissListener: DialogInterface.OnDismissListener? = null): AlertDialog {
         val layout = LinearLayout(context)
         val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -93,8 +99,9 @@ object DialogCreator {
                 .setMessage(descId)
                 .setTitle(titleId)
                 .setView(layout)
-                .setPositiveButton(positiveBtnTextId, null)
-                .setNegativeButton(negativeBtnTextId, null)
+                .setPositiveButton(positiveBtnTextId, onClickPositiveListener)
+                .setNegativeButton(negativeBtnTextId, onClickNegativeListener)
+                .setOnDismissListener(onDismissListener)
 
         return builder.create()
     }
