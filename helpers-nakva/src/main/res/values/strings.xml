@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">HelpersNakva</string>
+    <string name="nakva_ok">OK</string>
+    <string name="nakva_error">Error</string>
+    <string name="nakva_cancel">Cancel</string>
+    <string name="nakva_warning">Cancel</string>
+    <string name="nakva_info">Cancel</string>
 </resources>

@@ -49,6 +49,64 @@ object DialogCreator {
 
     /**
      *
+     * Show and Error Dialog to the user
+     *
+     * @param context               Current context to show the alert
+     * @param messageId             Message to show in the alert
+     * @param titleId               Title of the alert. [default value] "Error"
+     * @param iconId                Id of the drawable to show as icon. [default value] = ic_delete
+     * @param positiveBtnTextId     Id of the string to set in the positive button. [default value] "Ok"
+     * @param onCLickListener       Listener to detect the clicks in the buttons
+     * @param onDismissListener     Listener to detect the dismiss action of the alert
+     */
+    fun showError(context: Context,
+                  messageId: Int,
+                  titleId: Int? = R.string.nakva_error,
+                  iconId: Int? = android.R.drawable.ic_delete,
+                  positiveBtnTextId: Int? = R.string.nakva_ok,
+                  onCLickListener: DialogInterface.OnClickListener? = null,
+                  onDismissListener: DialogInterface.OnDismissListener? = null) {
+
+        this.showDialogMessage(context,
+                titleId!!,
+                iconId,
+                positiveBtnTextId!!,
+                messageId,
+                onCLickListener,
+                onDismissListener)
+    }
+
+    /**
+     *
+     * Show a warning error to the user
+     *
+     * @param context               Current context to show the alert
+     * @param messageId             Message to show in the alert
+     * @param titleId               Title of the alert. [default value] "Warning"
+     * @param iconId                Id of the drawable to show as icon. [default value] = stat_sys_warning
+     * @param positiveBtnTextId     Id of the string to set in the positive button. [default value] "Ok"
+     * @param onCLickListener       Listener to detect the clicks in the buttons
+     * @param onDismissListener     Listener to detect the dismiss action of the alert
+     */
+    fun showWarning(context: Context,
+                    messageId: Int,
+                    titleId: Int? = R.string.nakva_warning,
+                    iconId: Int? = android.R.drawable.stat_sys_warning,
+                    positiveBtnTextId: Int? = R.string.nakva_ok,
+                    onCLickListener: DialogInterface.OnClickListener? = null,
+                    onDismissListener: DialogInterface.OnDismissListener? = null) {
+
+        this.showDialogMessage(context,
+                titleId!!,
+                iconId,
+                positiveBtnTextId!!,
+                messageId,
+                onCLickListener,
+                onDismissListener)
+    }
+
+    /**
+     *
      * Create an alert dialog with an input to ask information to the user
      *
      * @param context                   Current context of the app
@@ -72,8 +130,8 @@ object DialogCreator {
                           inputType: Int,
                           inputText: String?,
                           hintInput: Int,
-                          positiveBtnTextId: Int,
-                          negativeBtnTextId: Int,
+                          positiveBtnTextId: Int? = R.string.nakva_ok,
+                          negativeBtnTextId: Int? = R.string.nakva_cancel,
                           onClickPositiveListener: DialogInterface.OnClickListener? = null,
                           onClickNegativeListener: DialogInterface.OnClickListener? = null,
                           onDismissListener: DialogInterface.OnDismissListener? = null): AlertDialog {
@@ -99,8 +157,8 @@ object DialogCreator {
                 .setMessage(descId)
                 .setTitle(titleId)
                 .setView(layout)
-                .setPositiveButton(positiveBtnTextId, onClickPositiveListener)
-                .setNegativeButton(negativeBtnTextId, onClickNegativeListener)
+                .setPositiveButton(positiveBtnTextId!!, onClickPositiveListener)
+                .setNegativeButton(negativeBtnTextId!!, onClickNegativeListener)
                 .setOnDismissListener(onDismissListener)
 
         return builder.create()
