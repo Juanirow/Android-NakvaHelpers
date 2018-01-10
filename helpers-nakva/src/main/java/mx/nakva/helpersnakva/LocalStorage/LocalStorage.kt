@@ -71,6 +71,18 @@ class LocalStorage(context: Context): ILocalStorage {
         }
     }
 
+    override fun setValue(key: String, value: Long) {
+        this.sharedPreferences?.edit()?.putLong(key, value)?.apply()
+    }
+
+    override fun getValue(key: String): Long? {
+        val value = this.sharedPreferences?.getLong(key, -100)
+        if(value == -100L) {
+            return null
+        }
+        return value
+    }
+
     abstract class LOCAL_STORAGE_KEYS {
         companion object {
             val EMAIL = "_email"
