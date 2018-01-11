@@ -52,11 +52,9 @@ class LocalStorage(context: Context): ILocalStorage {
 
     override fun hasSession(): Boolean {
         val email = this.getEmail()
-        val username = this.getUsername()
         val token = this.getToken()
-        val id = this.getId()
 
-        if(email != null && username != null && token != null && id != null){
+        if(email != null && token != null){
             return true
         }
         return false
