@@ -69,16 +69,34 @@ class LocalStorage(context: Context): ILocalStorage {
         }
     }
 
-    override fun setValue(key: String, value: Long) {
+    override fun setValue(key: String, value: Any) {
+        if(value is Long) {
+            this.setLongValue(key, value)
+            return
+        }
+        if(value is String) {
+            this.setStringValue(key, value)
+        }
+    }
+
+    override fun setLongValue(key: String, value: Long) {
         this.sharedPreferences?.edit()?.putLong(key, value)?.apply()
     }
 
-    override fun getValue(key: String): Long? {
+    override fun getLongValue(key: String): Long? {
         val value = this.sharedPreferences?.getLong(key, -100)
         if(value == -100L) {
             return null
         }
         return value
+    }
+
+    override fun setStringValue(key: String, value: String) {
+        this.sharedPreferences?.edit()?.putString(key, value)?.apply()
+    }
+
+    override fun getStringValue(key: String): String? {
+        return sharedPreferences?.getString(key, "")
     }
 
     abstract class LOCAL_STORAGE_KEYS {

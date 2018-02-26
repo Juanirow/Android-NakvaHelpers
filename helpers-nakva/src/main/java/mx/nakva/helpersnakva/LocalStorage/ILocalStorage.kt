@@ -15,7 +15,10 @@ interface ILocalStorage {
     fun createSession(username: String?, email: String?, token: String?, id: String?)
     fun hasSession(): Boolean
     fun destroySession()
-    fun setValue(key: String, value: Long)
-    fun getValue(key: String): Long?
+    fun setValue(key: String, value: Any)
+    fun setLongValue(key: String, value: Long)
+    fun getLongValue(key: String): Long?
+    fun setStringValue(key: String, value: String)
+    fun getStringValue(key: String): String?
 }
 
