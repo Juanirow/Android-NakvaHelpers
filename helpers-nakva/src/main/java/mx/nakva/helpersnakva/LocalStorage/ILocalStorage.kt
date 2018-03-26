@@ -20,5 +20,9 @@ interface ILocalStorage {
     fun getLongValue(key: String): Long?
     fun setStringValue(key: String, value: String)
     fun getStringValue(key: String): String?
+    fun setIntValue(key: String, value: Int)
+    fun getIntValue(key: String): Int?
+    fun setBooleanValue(key: String, value: Boolean)
+    fun getBooleanValue(key: String): Boolean?
 }
 
