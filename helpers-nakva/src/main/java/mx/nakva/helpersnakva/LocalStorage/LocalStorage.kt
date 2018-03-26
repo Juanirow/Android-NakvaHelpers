@@ -83,6 +83,9 @@ class LocalStorage(context: Context): ILocalStorage {
         if(value is Boolean) {
             this.setBooleanValue(key, value)
         }
+        if(value is Double) {
+            this.setDoubleValue(key, value)
+        }
     }
 
     override fun setLongValue(key: String, value: Long) {
@@ -122,6 +125,17 @@ class LocalStorage(context: Context): ILocalStorage {
     override fun getBooleanValue(key: String): Boolean? {
         if(this.sharedPreferences?.contains(key)!!) {
             return this.sharedPreferences?.getBoolean(key, false)
+        }
+        return null
+    }
+
+    override fun setDoubleValue(key: String, value: Double) {
+        this.sharedPreferences?.edit()?.putLong(key, value.toLong())?.apply()
+    }
+
+    override fun getDoubleValue(key: String): Double? {
+        if(this.sharedPreferences?.contains(key)!!) {
+            return this.sharedPreferences?.getLong(key, 0L)?.toDouble()
         }
         return null
     }

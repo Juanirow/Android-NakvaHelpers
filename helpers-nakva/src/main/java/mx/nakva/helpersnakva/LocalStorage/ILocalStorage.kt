@@ -24,5 +24,7 @@ interface ILocalStorage {
     fun getIntValue(key: String): Int?
     fun setBooleanValue(key: String, value: Boolean)
     fun getBooleanValue(key: String): Boolean?
+    fun setDoubleValue(key: String, value: Double)
+    fun getDoubleValue(key: String): Double?
 }
 
