@@ -93,11 +93,10 @@ class LocalStorage(context: Context): ILocalStorage {
     }
 
     override fun getLongValue(key: String): Long? {
-        val value = this.sharedPreferences?.getLong(key, -100)
-        if(value == -100L) {
+        if(!this.sharedPreferences?.contains(key)!!) {
             return null
         }
-        return value
+        return this.sharedPreferences?.getLong(key, 0)
     }
 
     override fun setStringValue(key: String, value: String) {
@@ -105,6 +104,9 @@ class LocalStorage(context: Context): ILocalStorage {
     }
 
     override fun getStringValue(key: String): String? {
+        if(!this.sharedPreferences?.contains(key)!!) {
+            return null
+        }
         return sharedPreferences?.getString(key, "")
     }
 
@@ -113,9 +115,10 @@ class LocalStorage(context: Context): ILocalStorage {
     }
 
     override fun getIntValue(key: String): Int? {
-        var value = sharedPreferences?.getInt(key, -1)
-        value = if(value == -1) null else value
-        return value
+        if(!this.sharedPreferences?.contains(key)!!) {
+            return null
+        }
+        return sharedPreferences?.getInt(key, 0)
     }
 
     override fun setBooleanValue(key: String, value: Boolean) {
