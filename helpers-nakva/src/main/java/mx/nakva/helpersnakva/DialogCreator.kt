@@ -67,10 +67,13 @@ object DialogCreator {
                   onCLickListener: DialogInterface.OnClickListener? = null,
                   onDismissListener: DialogInterface.OnDismissListener? = null) {
 
+        val tId = titleId ?: R.string.nakva_error
+        val btnTextId = positiveBtnTextId ?: R.string.nakva_ok
+
         this.showDialogMessage(context,
-                titleId!!,
+                tId,
                 iconId,
-                positiveBtnTextId!!,
+                btnTextId,
                 messageId,
                 onCLickListener,
                 onDismissListener)
@@ -96,10 +99,13 @@ object DialogCreator {
                     onCLickListener: DialogInterface.OnClickListener? = null,
                     onDismissListener: DialogInterface.OnDismissListener? = null) {
 
+        val tId = titleId ?: R.string.nakva_error
+        val btnTextId = positiveBtnTextId ?: R.string.nakva_ok
+
         this.showDialogMessage(context,
-                titleId!!,
+                tId,
                 iconId,
-                positiveBtnTextId!!,
+                btnTextId,
                 messageId,
                 onCLickListener,
                 onDismissListener)
